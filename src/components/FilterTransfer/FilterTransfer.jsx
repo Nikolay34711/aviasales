@@ -5,7 +5,7 @@ import cl from './FilterTransfer.module.scss'
 export default function FilterTransfer() {
   return (
     <div className={cl.containerTransfer}>
-      <h3>Количество пересадок</h3>
+      <h3>КОЛИЧЕСТВО ПЕРЕСАДОК</h3>
       <label>
         <input type="checkbox" />
         Все
