@@ -8,10 +8,13 @@ import TicketsList from '../TicketsList/TicketsList'
 export default function App() {
   return (
     <div className="App">
-      <img className='logo' src={logo} alt="logo" />
-      <div className='transfers'>
-        <FilterTransfer />
+      <div className="title">
+        {' '}
+        <img className="logo" src={logo} alt="logo" />
+        <h1>Welcome to AviaKataSales</h1>
+        <hr />
       </div>
+      <FilterTransfer />
       <FilterTabsTickets />
       <TicketsList />
     </div>

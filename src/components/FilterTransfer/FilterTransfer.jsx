@@ -18,10 +18,10 @@ export default function FilterTransfer() {
         <input type="checkbox" />1 пересадка
       </label>
       <label>
-        <input type="checkbox" />2 пересадка
+        <input type="checkbox" />2 пересадки
       </label>
       <label>
-        <input type="checkbox" />3 пересадка
+        <input type="checkbox" />3 пересадки
       </label>
     </div>
   )

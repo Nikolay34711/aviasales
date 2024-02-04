@@ -4,16 +4,22 @@ body {
 
 .App {
   text-align: center;
-}
 
-.logo {
-  position: relative;
-  top: 130px;
-  right: 105px;
-}
+  .title {
+    position: relative;
+    top: 70px;
 
-.transfers {
-  position: relative;
-  top: 280px;
-  right: 400px;
+    @media (max-width: 1120px) {
+      position: static;
+    }
+  }
+
+  hr {
+    border-color: #4dafff;
+  }
+
+  h1 {
+    font-size: 50px;
+    color: #2196f3;
+  }
 }

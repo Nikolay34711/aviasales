@@ -1,6 +1,7 @@
 .container-filter {
   width: 500px;
-  display: inline-block;
+  display: block;
+  margin: 20px auto;
 }
 
 .btn-reset {
@@ -9,13 +10,14 @@
   padding: 0;
   border: 1px solid #dfe5ec;
   cursor: pointer;
-}
 
-.btn-left {
-  border-radius: 10px 0 0 10px;
-}
-.btn-right {
-  border-radius: 0 10px 10px 0;
+  &.btn-left {
+    border-radius: 10px 0 0 10px;
+  }
+
+  &.btn-right {
+    border-radius: 0 10px 10px 0;
+  }
 }
 
 .btn-tabs {
@@ -24,20 +26,12 @@
   width: 165px;
   height: 50px;
   padding: 5px;
-}
 
-.btn-tabs:hover {
-  background-color: #38aef5;
-  color: white;
-  transition: all 0.3s;
-}
-.btn-tabs:active {
-  background-color: #38aef5;
-  color: white;
-  transition: all 0.3s;
-}
-.btn-tabs:focus {
-  background-color: #38aef5;
-  color: white;
-  transition: all 0.3s;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #38aef5;
+    color: white;
+    transition: all 0.3s;
+  }
 }

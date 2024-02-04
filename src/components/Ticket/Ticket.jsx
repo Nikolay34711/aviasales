@@ -5,8 +5,8 @@ import cl from './Ticket.module.scss'
 export default function Ticket() {
   return (
     <div className={cl.ticket}>
-      <span>13 400</span>
-      <img src={logo} alt="logo" />
+      <span className={cl.price}>13 400</span>
+      <img className={cl.logo} src={logo} alt="logo" />
 
       <div className={cl.flights}>
         <div className={cl.rows}>
