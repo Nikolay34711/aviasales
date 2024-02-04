@@ -1,4 +1,19 @@
+body {
+  background-color: rgb(238, 245, 245);
+}
+
 .App {
   text-align: center;
-  background-color: rgb(238, 245, 245);
+}
+
+.logo {
+  position: relative;
+  top: 130px;
+  right: 105px;
+}
+
+.transfers {
+  position: relative;
+  top: 280px;
+  right: 400px;
 }

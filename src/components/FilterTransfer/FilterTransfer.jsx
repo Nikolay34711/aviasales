@@ -4,7 +4,7 @@ import cl from './FilterTransfer.module.scss'
 
 export default function FilterTransfer() {
   return (
-    <div className={cl.containerTransfer}>
+    <div className={cl['container-transfer']}>
       <h3>КОЛИЧЕСТВО ПЕРЕСАДОК</h3>
       <label>
         <input type="checkbox" />
