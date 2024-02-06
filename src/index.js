@@ -1,6 +1,13 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
+import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom/client'
-import './index.scss'
+import store from './redux/store'
 import App from './components/App/App'
+import './index.scss'
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+)
