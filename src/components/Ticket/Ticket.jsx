@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import { format, add } from 'date-fns'
-import logo from './S7 Logo.svg'
 import cl from './Ticket.module.scss'
 
 export default function Ticket({ ticket }) {
-  const { price, segments } = ticket
+  const { price, carrier, segments } = ticket
 
   const formatFlightTime = (segment) => {
     const startTime = new Date(segment.date)
@@ -13,10 +12,12 @@ export default function Ticket({ ticket }) {
     return `${format(startTime, 'HH:mm')} – ${format(endTime, 'HH:mm')}`
   }
 
+  const logoUrl = `//pics.avs.io/99/36/${carrier}.png`
+
   return (
     <div className={cl.ticket}>
       <span className={cl.price}>{price}</span>
-      <img className={cl.logo} src={logo} alt="logo" />
+      <img className={cl.logo} src={logoUrl} alt="logo" />
 
       <div className={cl.flights}>
         <div className={cl.rows}>
