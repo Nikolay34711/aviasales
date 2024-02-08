@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchTickets } from '../../redux/slices/TicketsData'
+import fetchTickets from '../../utils/getTickets'
 import Ticket from '../Ticket/Ticket'
 import cl from './TicketsList.module.scss'
 

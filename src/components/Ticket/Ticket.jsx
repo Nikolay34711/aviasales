@@ -1,16 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { format, add } from 'date-fns'
+import formatTime from '../../utils/formatTime'
 import cl from './Ticket.module.scss'
 
 export default function Ticket({ ticket }) {
   const { price, carrier, segments } = ticket
-
-  const formatFlightTime = (segment) => {
-    const startTime = new Date(segment.date)
-    const endTime = add(startTime, { minutes: segment.duration })
-    return `${format(startTime, 'HH:mm')} – ${format(endTime, 'HH:mm')}`
-  }
 
   const logoUrl = `//pics.avs.io/99/36/${carrier}.png`
 
@@ -26,7 +20,7 @@ export default function Ticket({ ticket }) {
               <span>
                 {segments[0].origin} - {segments[0].destination}
               </span>
-              <span>{formatFlightTime(segments[0])}</span>
+              <span>{formatTime(segments[0])}</span>
             </span>
             <span>
               <span>В пути</span>
@@ -36,7 +30,7 @@ export default function Ticket({ ticket }) {
             </span>
             <span>
               <span>
-                {segments[0].stops.length} ПЕРЕСАДК{segments[0].stops.length === 1 ? 'КА' : 'И'}
+                {segments[0].stops.length} ПЕРЕСАДК{segments[0].stops.length < 2 ? 'А' : 'И'}
               </span>
               <span>{segments[0].stops.join(', ')}</span>
             </span>
@@ -47,7 +41,7 @@ export default function Ticket({ ticket }) {
               <span>
                 {segments[1].origin} - {segments[1].destination}
               </span>
-              <span>{formatFlightTime(segments[1])}</span>
+              <span>{formatTime(segments[1])}</span>
             </span>
             <span>
               <span>В пути</span>
@@ -57,7 +51,7 @@ export default function Ticket({ ticket }) {
             </span>
             <span>
               <span>
-                {segments[1].stops.length} ПЕРЕСАДК{segments[1].stops.length === 1 ? 'КА' : 'И'}
+                {segments[1].stops.length} ПЕРЕСАДК{segments[1].stops.length < 2 ? 'А' : 'И'}
               </span>
               <span>{segments[1].stops.join(', ')}</span>
             </span>

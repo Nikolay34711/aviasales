@@ -25,14 +25,14 @@
     input[type='checkbox'] {
       border: none;
       appearance: none;
-      background: url('./Form.svg') no-repeat;
+      background: url('../../icon/Form.svg') no-repeat;
       width: 22px;
       height: 22px;
       margin-right: 9px;
       cursor: pointer;
 
       &:checked {
-        background: url('./Checkbox.svg') no-repeat;
+        background: url('../../icon/Checkbox.svg') no-repeat;
       }
     }
   }
