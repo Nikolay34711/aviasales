@@ -1,7 +1,10 @@
+/* eslint-disable prefer-const */
+/* eslint-disable consistent-return */
 /* eslint-disable curly */
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
+import { Alert } from 'antd'
 import fetchTickets, { getId } from '../../utils/getTickets'
 import Ticket from '../Ticket/Ticket'
 import cl from './TicketsList.module.scss'
@@ -15,7 +18,6 @@ export default function TicketsList() {
   const searchId = useSelector((state) => state.ticketsData.searchId)
   const filterTransfers = useSelector((state) => state.filterTransfers)
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (!stopTickets && searchId) {
       const timer = setInterval(() => {
@@ -30,7 +32,6 @@ export default function TicketsList() {
     dispatch(getId())
   }, [dispatch])
 
-  // eslint-disable-next-line prefer-const
   let sortedTickets = [...ticketsData]
 
   switch (activeFilter) {
@@ -55,36 +56,35 @@ export default function TicketsList() {
       break
   }
 
-  let newTickets = []
+  let filterTickets = []
   const noTransfersOn = filterTransfers[1].checked
   const oneTransfersOn = filterTransfers[2].checked
   const twoTransfersOn = filterTransfers[3].checked
   const threeTransfersOn = filterTransfers[4].checked
 
   if (noTransfersOn) {
-    newTickets = sortedTickets.filter(
+    filterTickets = sortedTickets.filter(
       (el) => el.segments[1].stops.length === 0 && el.segments[0].stops.length === 0,
     )
   } else if (oneTransfersOn) {
-    newTickets = sortedTickets.filter(
+    filterTickets = sortedTickets.filter(
       (el) => el.segments[1].stops.length === 1 || el.segments[0].stops.length === 1,
     )
   } else if (twoTransfersOn) {
-    newTickets = sortedTickets.filter(
+    filterTickets = sortedTickets.filter(
       (el) => el.segments[1].stops.length === 2 || el.segments[0].stops.length === 2,
     )
   } else if (threeTransfersOn) {
-    newTickets = sortedTickets.filter(
+    filterTickets = sortedTickets.filter(
       (el) => el.segments[1].stops.length === 3 || el.segments[0].stops.length === 3,
     )
   }
-
   return (
     <div>
-      {newTickets.slice(0, ticketsCount).map((ticket) => (
+      {filterTickets.slice(0, ticketsCount).map((ticket) => (
         <Ticket key={uuidv4()} ticket={ticket} />
       ))}
-      {ticketsData.length > 0 && (
+      {filterTickets.length ? (
         <button
           type="button"
           className={cl['btn-show-more']}
@@ -92,6 +92,12 @@ export default function TicketsList() {
         >
           ПОКАЗАТЬ ЕЩЕ 5 БИЛЕТОВ!
         </button>
+      ) : (
+        <Alert
+          style={{ marginLeft: 'auto', marginRight: 'auto', width: '500px' }}
+          message="<------------------- Какое количество пересадок вам подходит?"
+          type="warning"
+        />
       )}
     </div>
   )

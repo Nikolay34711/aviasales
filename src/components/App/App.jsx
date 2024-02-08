@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Spin } from 'antd'
+import { Alert, Spin } from 'antd'
 import FilterTabsTickets from '../FilterTabsTickets/FilterTabsTickets'
 import FilterTransfer from '../FilterTransfers/FilterTransfer'
 import TicketsList from '../TicketsList/TicketsList'
@@ -18,6 +18,30 @@ export default function App() {
         <h1>Welcome to AviaKataSales</h1>
         <hr />
         {!stopSearch && <Spin size="large" style={{ marginTop: '30px' }} />}
+        {!stopSearch && (
+          <Alert
+            message="Билеты подгружаются"
+            type="warning"
+            style={{
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              marginTop: '20px',
+              width: '500px',
+            }}
+          />
+        )}
+        {stopSearch && (
+          <Alert
+            message="Билеты успешно загружены, приятного путешествия!"
+            type="success"
+            style={{
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              marginTop: '20px',
+              width: '500px',
+            }}
+          />
+        )}
       </div>
       <FilterTransfer />
       <FilterTabsTickets />
