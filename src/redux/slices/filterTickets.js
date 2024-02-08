@@ -4,7 +4,6 @@ const initialState = {
   filterTickets: '',
 }
 
-
 const filterTicketsSlice = createSlice({
   name: 'filterTickets',
   initialState,

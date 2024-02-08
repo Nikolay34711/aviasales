@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { v4 } from 'uuid'
 import { setFilterTickets } from '../../redux/slices/filterTickets'
 import cl from './FilterTabsTickets.module.scss'
 
@@ -24,7 +25,7 @@ export default function FilterTabsTickets() {
       <div className={cl['container-filter']}>
         {buttons.map(({ name, classNames, label }) => (
           <button
-            key={Math.random()}
+            key={v4()}
             className={
               activeFilter === name
                 ? [...classNames, cl['btn-active']].join(' ')
