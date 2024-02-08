@@ -10,14 +10,18 @@ import Ticket from '../Ticket/Ticket'
 import cl from './TicketsList.module.scss'
 
 export default function TicketsList() {
+  // dispatch
   const dispatch = useDispatch()
+  // state
   const [ticketsCount, setTicketsCount] = useState(5)
+  // subscribe
   const ticketsData = useSelector((state) => state.ticketsData.ticketsData)
   const activeFilter = useSelector((state) => state.filterTickets.filterTickets)
   const stopTickets = useSelector((state) => state.ticketsData.stop)
   const searchId = useSelector((state) => state.ticketsData.searchId)
   const filterTransfers = useSelector((state) => state.filterTransfers)
 
+  // Запрос на билеты
   useEffect(() => {
     if (!stopTickets && searchId) {
       const timer = setInterval(() => {
@@ -32,6 +36,7 @@ export default function TicketsList() {
     dispatch(getId())
   }, [dispatch])
 
+  // Сортировка билетов по цене/скорости и оптимальности
   let sortedTickets = [...ticketsData]
 
   switch (activeFilter) {
@@ -56,6 +61,7 @@ export default function TicketsList() {
       break
   }
 
+  // Сортировка билетов по filter checkbox
   let filterTickets = []
   const noTransfersOn = filterTransfers[1].checked
   const oneTransfersOn = filterTransfers[2].checked
@@ -95,8 +101,7 @@ export default function TicketsList() {
       ) : (
         <Alert
           style={{ marginLeft: 'auto', marginRight: 'auto', width: '500px' }}
-          message="<------------------- Какое количество пересадок вам подходит?"
-          type="warning"
+          message="Какое количество пересадок вам подходит?"
         />
       )}
     </div>

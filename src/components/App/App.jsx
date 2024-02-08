@@ -14,13 +14,15 @@ export default function App() {
     <div className="App">
       <div className="title">
         {' '}
+        {/* Заголовок и лого */}
         <img className="logo" src={logo} alt="logo" />
         <h1>Welcome to AviaKataSales</h1>
         <hr />
+        {/* То что будет показываться, пока билеты загражются */}
         {!stopSearch && <Spin size="large" style={{ marginTop: '30px' }} />}
         {!stopSearch && (
           <Alert
-            message="Билеты подгружаются"
+            message="Билеты подгружаются, но часть из них вы уже можете посмотреть, просто выберите кол-во пересадок которое вам подходит!"
             type="warning"
             style={{
               marginLeft: 'auto',
@@ -30,9 +32,10 @@ export default function App() {
             }}
           />
         )}
+        {/* То что будет показываться, после загрузки билетов */}
         {stopSearch && (
           <Alert
-            message="Билеты успешно загружены, приятного путешествия!"
+            message="Все билеты успешно загружены, приятного путешествия!"
             type="success"
             style={{
               marginLeft: 'auto',
@@ -42,6 +45,7 @@ export default function App() {
             }}
           />
         )}
+        {/* Основные компоненты */}
       </div>
       <FilterTransfer />
       <FilterTabsTickets />
