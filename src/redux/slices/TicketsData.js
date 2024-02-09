@@ -25,7 +25,6 @@ const ticketsData = createSlice({
         } else {
           state.isLoad = true
         }
-
         state.ticketsData.push(...action.payload.tickets)
         state.stop = action.payload.stop
       })

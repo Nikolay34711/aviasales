@@ -5,8 +5,8 @@ import { Alert } from 'antd'
 import fetchTickets, { getId } from '../../utils/getTickets'
 import Ticket from '../Ticket/Ticket'
 import cl from './TicketsList.module.scss'
-import utilsSort from '../../utils/sortedTickets'
-import utilsFilter from '../../utils/filterTickets'
+import utilsSort from '../../utils/utilsSort'
+import utilsFilter from '../../utils/utilsFtilter'
 
 export default function TicketsList() {
   const dispatch = useDispatch()
@@ -58,7 +58,7 @@ export default function TicketsList() {
       ) : (
         <Alert
           style={{ marginLeft: 'auto', marginRight: 'auto', width: '500px' }}
-          message="К сожалению, ресов сейчас нет, или попробуйте выбрать другие фильтры!"
+          message="К сожалению, рейсы не найдены, попробуйте выбрать другие фильтры!"
           type="warning"
         />
       )}
