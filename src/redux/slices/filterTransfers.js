@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = [
   { filter: 'all', checked: false },
   { filter: 'noTransfers', checked: false },
-  { filter: 'oneTransfers', checked: false },
+  { filter: 'oneTransfers', checked: true },
   { filter: 'twoTransfers', checked: false },
   { filter: 'threeTransfers', checked: false },
 ]

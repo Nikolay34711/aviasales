@@ -22,7 +22,7 @@ export default function App() {
         {!stopSearch && <Spin size="large" style={{ marginTop: '30px' }} />}
         {!stopSearch && (
           <Alert
-            message="Билеты подгружаются, но часть из них вы уже можете посмотреть, просто выберите кол-во пересадок которое вам подходит!"
+            message="Билеты подгружаются, но часть из них вы уже можете посмотреть!"
             type="warning"
             style={{
               marginLeft: 'auto',

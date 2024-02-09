@@ -101,7 +101,8 @@ export default function TicketsList() {
       ) : (
         <Alert
           style={{ marginLeft: 'auto', marginRight: 'auto', width: '500px' }}
-          message="Какое количество пересадок вам подходит?"
+          message="К сожалению, ресов сейчас нет, или попробуйте выбрать другие фильтры!"
+          type="warning"
         />
       )}
     </div>
