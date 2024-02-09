@@ -1,6 +1,4 @@
-/* eslint-disable prefer-const */
 /* eslint-disable consistent-return */
-/* eslint-disable curly */
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
@@ -8,6 +6,8 @@ import { Alert } from 'antd'
 import fetchTickets, { getId } from '../../utils/getTickets'
 import Ticket from '../Ticket/Ticket'
 import cl from './TicketsList.module.scss'
+import utilsSort from '../../utils/sortedTickets'
+import utilsFilter from '../../utils/filterTickets'
 
 export default function TicketsList() {
   // dispatch
@@ -15,11 +15,10 @@ export default function TicketsList() {
   // state
   const [ticketsCount, setTicketsCount] = useState(5)
   // subscribe
-  const ticketsData = useSelector((state) => state.ticketsData.ticketsData)
   const activeFilter = useSelector((state) => state.filterTickets.filterTickets)
-  const stopTickets = useSelector((state) => state.ticketsData.stop)
-  const searchId = useSelector((state) => state.ticketsData.searchId)
   const filterTransfers = useSelector((state) => state.filterTransfers)
+  // деструктуризирую некоторые из subscribe
+  const { ticketsData, stop: stopTickets, searchId } = useSelector((state) => state.ticketsData)
 
   // Запрос на билеты
   useEffect(() => {
@@ -37,54 +36,10 @@ export default function TicketsList() {
   }, [dispatch])
 
   // Сортировка билетов по цене/скорости и оптимальности
-  let sortedTickets = [...ticketsData]
-
-  switch (activeFilter) {
-    case 'cheap':
-      sortedTickets.sort((a, b) => a.price - b.price)
-      break
-    case 'fast':
-      sortedTickets.sort((prevEl, nextEl) => {
-        const sum1 = prevEl.segments[0].duration + prevEl.segments[1].duration
-        const sum2 = nextEl.segments[0].duration + nextEl.segments[1].duration
-        return sum1 - sum2
-      })
-      break
-    case 'optimal':
-      sortedTickets.sort((prevEl, nextEl) => {
-        const mult1 = prevEl.price * prevEl.segments[0].duration
-        const mult2 = nextEl.price * nextEl.segments[0].duration
-        return mult1 - mult2
-      })
-      break
-    default:
-      break
-  }
+  const sortedTickets = utilsSort(ticketsData, activeFilter)
 
   // Сортировка билетов по filter checkbox
-  let filterTickets = []
-  const noTransfersOn = filterTransfers[1].checked
-  const oneTransfersOn = filterTransfers[2].checked
-  const twoTransfersOn = filterTransfers[3].checked
-  const threeTransfersOn = filterTransfers[4].checked
-
-  if (noTransfersOn) {
-    filterTickets = sortedTickets.filter(
-      (el) => el.segments[1].stops.length === 0 && el.segments[0].stops.length === 0,
-    )
-  } else if (oneTransfersOn) {
-    filterTickets = sortedTickets.filter(
-      (el) => el.segments[1].stops.length === 1 || el.segments[0].stops.length === 1,
-    )
-  } else if (twoTransfersOn) {
-    filterTickets = sortedTickets.filter(
-      (el) => el.segments[1].stops.length === 2 || el.segments[0].stops.length === 2,
-    )
-  } else if (threeTransfersOn) {
-    filterTickets = sortedTickets.filter(
-      (el) => el.segments[1].stops.length === 3 || el.segments[0].stops.length === 3,
-    )
-  }
+  const filterTickets = utilsFilter(filterTransfers, sortedTickets)
   return (
     <div>
       {filterTickets.slice(0, ticketsCount).map((ticket) => (
