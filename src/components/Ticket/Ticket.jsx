@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import formatTime from '../../utils/formatTime'
+import wordEndings from '../../utils/wordEndings'
 import cl from './Ticket.module.scss'
 
 export default function Ticket({ ticket }) {
@@ -30,7 +31,8 @@ export default function Ticket({ ticket }) {
             </span>
             <span>
               <span className={cl.opaci}>
-                {segments[0].stops.length} ПЕРЕСАДК{segments[0].stops.length < 2 ? 'А' : 'И'}
+                {segments[0].stops.length === 0 ? '' : segments[0].stops.length}{' '}
+                {wordEndings(segments[0].stops.length)}
               </span>
               <span>{segments[0].stops.join(', ')}</span>
             </span>
@@ -51,7 +53,8 @@ export default function Ticket({ ticket }) {
             </span>
             <span>
               <span className={cl.opaci}>
-                {segments[1].stops.length} ПЕРЕСАДК{segments[1].stops.length < 2 ? 'А' : 'И'}
+                {segments[1].stops.length === 0 ? '' : segments[1].stops.length}{' '}
+                {wordEndings(segments[1].stops.length)}
               </span>
               <span>{segments[1].stops.join(', ')}</span>
             </span>
