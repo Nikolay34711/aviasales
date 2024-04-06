@@ -28,7 +28,7 @@ const App = () => {
     <div className="App">
       <div className="title">
         <img className="logo" src={logo} alt="logo" />
-        <h1>Welcome to AviaKataSales</h1>
+        <h1>Welcome to AviaWhiteCodeSales</h1>
         <hr />
         {!stopSearch && (
           <>
